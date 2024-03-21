@@ -16,6 +16,7 @@
 
 package com.google.samples.apps.sunflower.plantdetail
 
+import android.content.res.Configuration
 import android.text.method.LinkMovementMethod
 import android.widget.TextView
 import androidx.compose.foundation.layout.Column
@@ -41,6 +42,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.HtmlCompat
 import com.google.samples.apps.sunflower.R
 import com.google.samples.apps.sunflower.data.Plant
+import com.google.samples.apps.sunflower.theme.SunflowerTheme
 import com.google.samples.apps.sunflower.viewmodels.PlantDetailViewModel
 
 @Composable
@@ -131,15 +133,23 @@ private fun PlantDescription(description: String) {
 @Composable
 private fun PlantDetailContentPreview() {
     val plant = Plant("id", "Apple", "HTML<br><br>description", 3, 30, "")
-    MaterialTheme {
+    SunflowerTheme {
         PlantDetailContent(plant)
     }
 }
 
 @Preview
 @Composable
+private fun PlantNamePreview() {
+    SunflowerTheme {
+        PlantName("Apple")
+    }
+}
+
+@Preview
+@Composable
 private fun PlantWateringPreview() {
-    MaterialTheme {
+    SunflowerTheme {
         PlantWatering(7)
     }
 }
@@ -147,7 +157,16 @@ private fun PlantWateringPreview() {
 @Preview
 @Composable
 private fun PlantDescriptionPreview() {
-    MaterialTheme {
+    SunflowerTheme {
         PlantDescription("HTML<br><br>description")
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun PlantDetailContentDarkPreview() {
+    val plant = Plant("id", "Apple", "HTML<br><br>description", 3, 30, "")
+    SunflowerTheme {
+        PlantDetailContent(plant)
     }
 }
